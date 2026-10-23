@@ -1,0 +1,423 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		121FD98BA20EA8303D7FF4A9 /* BinaryLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5ACB78167EF945B24B8092 /* BinaryLocator.swift */; };
+		20E8462747E7A19C02F0A451 /* TubioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E88530B28C75DA4E84656C4 /* TubioApp.swift */; };
+		2E8DBC713BAA770BE6AD41CA /* DownloadCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AA3B531350F4F9E9B84A42 /* DownloadCardView.swift */; };
+		33C4319A5D6E53E0B4EAA332 /* MissingToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A7A35A95FD85C9C87FA132 /* MissingToolsView.swift */; };
+		476C9B81BE94D72896F1D110 /* HomebrewUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE32FE58CA275D3C2A00E1FC /* HomebrewUpdater.swift */; };
+		5BE4163DE0EE30179B5496D8 /* DownloadQueueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB49CEDC6CFEA94F39FE41 /* DownloadQueueViewModel.swift */; };
+		5FCEE542EB6BA870A1998B58 /* DownloadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6C5864AE9015ED6827BA9F /* DownloadItem.swift */; };
+		635647FA5A2A448256198264 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63803C2CB69A6D3532E766A8 /* ContentView.swift */; };
+		7D095AA57B9B51FEC385E602 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 67A8E35B2EF89956BF6EBD3F /* Localizable.xcstrings */; };
+		82E4DC5CBE8EF185327D7CF1 /* DestinationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8846906A1CC36DEB6EF7A2 /* DestinationParser.swift */; };
+		86A2BDD0AB240D033822A4A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31F21454C3AA21B0D772EFE5 /* Assets.xcassets */; };
+		A9786DB4FEF0A40FAFCA2E4F /* ProgressParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70FBD305762934A31F7D834 /* ProgressParser.swift */; };
+		B5E60F49967FB6768946A294 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB88E2C9920DFCD4F6F3ABF6 /* Theme.swift */; };
+		BF003A39A4F089D8218EE6BD /* YtdlpRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C3BB016E027D622A6F295E /* YtdlpRunner.swift */; };
+		C6D2EFB97720CF207A2CFA9C /* MediaInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BB9F8D21C1022929160C2A /* MediaInfo.swift */; };
+		C7CF33C779018414DA75D3E5 /* YtdlpArgs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E38C4BFCB1536B35A8E29C9 /* YtdlpArgs.swift */; };
+		F12F9353E309DEF953DD25D2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0617E9D36F6360D16D72CF /* SettingsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		26C3BB016E027D622A6F295E /* YtdlpRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YtdlpRunner.swift; sourceTree = "<group>"; };
+		31F21454C3AA21B0D772EFE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3C0617E9D36F6360D16D72CF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3D6C5864AE9015ED6827BA9F /* DownloadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadItem.swift; sourceTree = "<group>"; };
+		45AA3B531350F4F9E9B84A42 /* DownloadCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadCardView.swift; sourceTree = "<group>"; };
+		63803C2CB69A6D3532E766A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		67A8E35B2EF89956BF6EBD3F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		6E38C4BFCB1536B35A8E29C9 /* YtdlpArgs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YtdlpArgs.swift; sourceTree = "<group>"; };
+		6E88530B28C75DA4E84656C4 /* TubioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TubioApp.swift; sourceTree = "<group>"; };
+		7D8846906A1CC36DEB6EF7A2 /* DestinationParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationParser.swift; sourceTree = "<group>"; };
+		84DB49CEDC6CFEA94F39FE41 /* DownloadQueueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadQueueViewModel.swift; sourceTree = "<group>"; };
+		9FC67E61196E8DE2E3F72A14 /* Tubio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tubio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE32FE58CA275D3C2A00E1FC /* HomebrewUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomebrewUpdater.swift; sourceTree = "<group>"; };
+		B70FBD305762934A31F7D834 /* ProgressParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressParser.swift; sourceTree = "<group>"; };
+		BC5ACB78167EF945B24B8092 /* BinaryLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryLocator.swift; sourceTree = "<group>"; };
+		CB88E2C9920DFCD4F6F3ABF6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		E0A7A35A95FD85C9C87FA132 /* MissingToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingToolsView.swift; sourceTree = "<group>"; };
+		F3BB9F8D21C1022929160C2A /* MediaInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaInfo.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		02803A27992D9821A7C295C1 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				31F21454C3AA21B0D772EFE5 /* Assets.xcassets */,
+				2CA8A26555584CADA38A8996 /* App */,
+				E0883B679797822CF48FC7B6 /* Models */,
+				66A72FE11CE9A826F962FCF4 /* Resources */,
+				AAFE1DAF98583B3F357E1074 /* Services */,
+				BBC993C10032A8D33F1374C3 /* ViewModels */,
+				3205AED1CC5CC8BD6E2DBAF6 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		2CA8A26555584CADA38A8996 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6E88530B28C75DA4E84656C4 /* TubioApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		3205AED1CC5CC8BD6E2DBAF6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				63803C2CB69A6D3532E766A8 /* ContentView.swift */,
+				45AA3B531350F4F9E9B84A42 /* DownloadCardView.swift */,
+				E0A7A35A95FD85C9C87FA132 /* MissingToolsView.swift */,
+				3C0617E9D36F6360D16D72CF /* SettingsView.swift */,
+				CB88E2C9920DFCD4F6F3ABF6 /* Theme.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		66A72FE11CE9A826F962FCF4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				67A8E35B2EF89956BF6EBD3F /* Localizable.xcstrings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AAFE1DAF98583B3F357E1074 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BC5ACB78167EF945B24B8092 /* BinaryLocator.swift */,
+				7D8846906A1CC36DEB6EF7A2 /* DestinationParser.swift */,
+				AE32FE58CA275D3C2A00E1FC /* HomebrewUpdater.swift */,
+				B70FBD305762934A31F7D834 /* ProgressParser.swift */,
+				6E38C4BFCB1536B35A8E29C9 /* YtdlpArgs.swift */,
+				26C3BB016E027D622A6F295E /* YtdlpRunner.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BBC993C10032A8D33F1374C3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				84DB49CEDC6CFEA94F39FE41 /* DownloadQueueViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BC8E0C5F5B347C6EDD75D35B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9FC67E61196E8DE2E3F72A14 /* Tubio.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E0883B679797822CF48FC7B6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3D6C5864AE9015ED6827BA9F /* DownloadItem.swift */,
+				F3BB9F8D21C1022929160C2A /* MediaInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FD421937FE225BC3E5371722 = {
+			isa = PBXGroup;
+			children = (
+				02803A27992D9821A7C295C1 /* Sources */,
+				BC8E0C5F5B347C6EDD75D35B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4FD0A144B8B2DDA18EB41A00 /* Tubio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E74FBE9E969E69BF938A786 /* Build configuration list for PBXNativeTarget "Tubio" */;
+			buildPhases = (
+				54C537E1F585A39AA4EE8376 /* Sources */,
+				C32EE9938D8BDA541D47FF84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tubio;
+			packageProductDependencies = (
+			);
+			productName = Tubio;
+			productReference = 9FC67E61196E8DE2E3F72A14 /* Tubio.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6AD6CED98EF23CF5E8C7F452 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					4FD0A144B8B2DDA18EB41A00 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E8B2DF8D2455CF2BB3799CBD /* Build configuration list for PBXProject "Tubio" */;
+			developmentRegion = pl;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+				pl,
+			);
+			mainGroup = FD421937FE225BC3E5371722;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = BC8E0C5F5B347C6EDD75D35B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4FD0A144B8B2DDA18EB41A00 /* Tubio */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C32EE9938D8BDA541D47FF84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86A2BDD0AB240D033822A4A6 /* Assets.xcassets in Resources */,
+				7D095AA57B9B51FEC385E602 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		54C537E1F585A39AA4EE8376 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				121FD98BA20EA8303D7FF4A9 /* BinaryLocator.swift in Sources */,
+				635647FA5A2A448256198264 /* ContentView.swift in Sources */,
+				82E4DC5CBE8EF185327D7CF1 /* DestinationParser.swift in Sources */,
+				2E8DBC713BAA770BE6AD41CA /* DownloadCardView.swift in Sources */,
+				5FCEE542EB6BA870A1998B58 /* DownloadItem.swift in Sources */,
+				5BE4163DE0EE30179B5496D8 /* DownloadQueueViewModel.swift in Sources */,
+				476C9B81BE94D72896F1D110 /* HomebrewUpdater.swift in Sources */,
+				C6D2EFB97720CF207A2CFA9C /* MediaInfo.swift in Sources */,
+				33C4319A5D6E53E0B4EAA332 /* MissingToolsView.swift in Sources */,
+				A9786DB4FEF0A40FAFCA2E4F /* ProgressParser.swift in Sources */,
+				F12F9353E309DEF953DD25D2 /* SettingsView.swift in Sources */,
+				B5E60F49967FB6768946A294 /* Theme.swift in Sources */,
+				20E8462747E7A19C02F0A451 /* TubioApp.swift in Sources */,
+				C7CF33C779018414DA75D3E5 /* YtdlpArgs.swift in Sources */,
+				BF003A39A4F089D8218EE6BD /* YtdlpRunner.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B58562E0115C850E9C679D8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Tubio.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_LANGUAGE = pl;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tubio.Tubio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		E1D4BF23CD3D9D9E08EF5F31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Tubio.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_LANGUAGE = pl;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tubio.Tubio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		EBD0209AF2D15E9E6E32D80A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		EDFC1581B7A899D833CD5BC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0E74FBE9E969E69BF938A786 /* Build configuration list for PBXNativeTarget "Tubio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDFC1581B7A899D833CD5BC9 /* Debug */,
+				EBD0209AF2D15E9E6E32D80A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E8B2DF8D2455CF2BB3799CBD /* Build configuration list for PBXProject "Tubio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1D4BF23CD3D9D9E08EF5F31 /* Debug */,
+				B58562E0115C850E9C679D8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6AD6CED98EF23CF5E8C7F452 /* Project object */;
+}

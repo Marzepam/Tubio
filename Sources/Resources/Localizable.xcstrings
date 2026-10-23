@@ -1,0 +1,663 @@
+{
+  "sourceLanguage" : "pl",
+  "strings" : {
+    "" : {
+
+    },
+    "· %@" : {
+      "comment" : "Bullet + download speed, e.g. · 3.2 MB/s",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "· %@"
+          }
+        }
+      }
+    },
+    "· pozostało %@" : {
+      "comment" : "Bullet + remaining time, e.g. · pozostało 2 min 10 s",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "· %@ left"
+          }
+        }
+      }
+    },
+    "%(title)s.%(ext)s" : {
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$(title)s.%2$(ext)s"
+          }
+        }
+      }
+    },
+    "%d min %d s" : {
+      "comment" : "Minutes and seconds remaining, e.g. 2 min 10 s",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d min %d s"
+          }
+        }
+      }
+    },
+    "%d s" : {
+      "comment" : "Seconds remaining only",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d s"
+          }
+        }
+      }
+    },
+    "%d%%" : {
+      "comment" : "Download progress percentage, e.g. 42%",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d%%"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "480p" : {
+
+    },
+    "720p" : {
+
+    },
+    "1080p" : {
+
+    },
+    "Aktualne — yt-dlp %@, ffmpeg %@." : {
+      "comment" : "Shown when yt-dlp/ffmpeg are both up to date, with their version strings",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Up to date — yt-dlp %@, ffmpeg %@."
+          }
+        }
+      }
+    },
+    "Anulowano" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelled"
+          }
+        }
+      }
+    },
+    "Anuluj" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "Błąd" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
+    },
+    "Błąd sprawdzania: %@" : {
+      "comment" : "Shown when the brew outdated/upgrade check itself failed to run",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check failed: %@"
+          }
+        }
+      }
+    },
+    "Brakuje yt-dlp i/lub ffmpeg" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "yt-dlp and/or ffmpeg missing"
+          }
+        }
+      }
+    },
+    "Coś nie zagrało" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong"
+          }
+        }
+      }
+    },
+    "Do pobierania wideo Tubio potrzebuje yt-dlp i ffmpeg zainstalowanych przez Homebrew. Na następnym ekranie znajdziesz gotowe do skopiowania polecenie instalacyjne." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To download video, Tubio needs yt-dlp and ffmpeg installed via Homebrew. You'll find a ready-to-copy install command on the next screen."
+          }
+        }
+      }
+    },
+    "Dodaj do kolejki" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to queue"
+          }
+        }
+      }
+    },
+    "Dołącz miniaturę do pliku" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Embed thumbnail in file"
+          }
+        }
+      }
+    },
+    "Dołącz napisy, jeśli dostępne" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Embed subtitles if available"
+          }
+        }
+      }
+    },
+    "Domyślna jakość" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default quality"
+          }
+        }
+      }
+    },
+    "Dostępna aktualizacja: %@ (obecnie yt-dlp %@, ffmpeg %@)." : {
+      "comment" : "Shown when brew outdated reports yt-dlp and/or ffmpeg have an update available",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update available: %@ (currently yt-dlp %@, ffmpeg %@)."
+          }
+        }
+      }
+    },
+    "Folder docelowy" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destination folder"
+          }
+        }
+      }
+    },
+    "Jakość" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quality"
+          }
+        }
+      }
+    },
+    "Kopiuj polecenie" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy command"
+          }
+        }
+      }
+    },
+    "Korzysta ze składni szablonów yt-dlp, np. %(title)s, %(ext)s, %(uploader)s." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uses yt-dlp's template syntax, e.g. %(title)s, %(ext)s, %(uploader)s."
+          }
+        }
+      }
+    },
+    "Made by Marcin Lipiński\nPobieranie realizują yt-dlp i ffmpeg (Homebrew)" : {
+      "comment" : "About panel credits: author line + 'downloads are handled by yt-dlp and ffmpeg (Homebrew)' line",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Made by Marcin Lipiński\nDownloads are handled by yt-dlp and ffmpeg (Homebrew)"
+          }
+        }
+      }
+    },
+    "Maks. równoczesnych pobrań" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max. concurrent downloads"
+          }
+        }
+      }
+    },
+    "Najlepsza jakość" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best quality"
+          }
+        }
+      }
+    },
+    "Nie masz Homebrew?" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't have Homebrew?"
+          }
+        }
+      }
+    },
+    "Nie sprawdzono jeszcze." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not checked yet."
+          }
+        }
+      }
+    },
+    "Nie znaleziono polecenia brew — yt-dlp/ffmpeg trzeba zaktualizować ręcznie (brew upgrade yt-dlp ffmpeg)." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "brew command not found — update yt-dlp/ffmpeg manually (brew upgrade yt-dlp ffmpeg)."
+          }
+        }
+      }
+    },
+    "O Tubio" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About Tubio"
+          }
+        }
+      }
+    },
+    "OK" : {
+
+    },
+    "Otwórz" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open"
+          }
+        }
+      }
+    },
+    "Otwórz brew.sh" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open brew.sh"
+          }
+        }
+      }
+    },
+    "Pobieranie…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloading…"
+          }
+        }
+      }
+    },
+    "Pobierz teraz" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download now"
+          }
+        }
+      }
+    },
+    "Pokaż w Finderze" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show in Finder"
+          }
+        }
+      }
+    },
+    "Sprawdź aktualizacje" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check for updates"
+          }
+        }
+      }
+    },
+    "Sprawdź ponownie" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check again"
+          }
+        }
+      }
+    },
+    "Sprawdzanie…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking…"
+          }
+        }
+      }
+    },
+    "Spróbuj ponownie" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again"
+          }
+        }
+      }
+    },
+    "Szablon nazwy pliku" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filename template"
+          }
+        }
+      }
+    },
+    "To nie wygląda na prawidłowy adres (http/https): %@" : {
+      "comment" : "Error shown when the pasted text isn't a valid http/https URL",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "That doesn't look like a valid address (http/https): %@"
+          }
+        }
+      }
+    },
+    "Tubio" : {
+
+    },
+    "Tubio nie pobiera ani nie uruchamia tych narzędzi samodzielnie — to świadoma decyzja (patrz README). Zainstaluj je raz przez Homebrew, a Tubio znajdzie je automatycznie." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tubio deliberately doesn't download or run these tools on its own — see the README for why. Install them once via Homebrew and Tubio will find them automatically."
+          }
+        }
+      }
+    },
+    "Tylko audio (MP3)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Audio only (MP3)"
+          }
+        }
+      }
+    },
+    "Ukończono" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed"
+          }
+        }
+      }
+    },
+    "Ustawienia" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
+    "Usuń z listy" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from list"
+          }
+        }
+      }
+    },
+    "W kolejce" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Queued"
+          }
+        }
+      }
+    },
+    "Wczytywanie informacji…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading info…"
+          }
+        }
+      }
+    },
+    "Witaj w Tubio" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Tubio"
+          }
+        }
+      }
+    },
+    "Wklej adres filmu powyżej, aby zacząć" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paste a video link above to get started"
+          }
+        }
+      }
+    },
+    "Wklej adres filmu…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paste a video link…"
+          }
+        }
+      }
+    },
+    "Wklej ze schowka" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paste from clipboard"
+          }
+        }
+      }
+    },
+    "Wstrzymaj" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause"
+          }
+        }
+      }
+    },
+    "Wstrzymano" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paused"
+          }
+        }
+      }
+    },
+    "Wybierz" : {
+      "comment" : "Confirm button in the folder-choosing panel",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose"
+          }
+        }
+      }
+    },
+    "Wyczyść ukończone" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear completed"
+          }
+        }
+      }
+    },
+    "Wznów" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resume"
+          }
+        }
+      }
+    },
+    "yt-dlp / ffmpeg" : {
+
+    },
+    "yt-dlp / ffmpeg nie zostały znalezione — zobacz ekran instalacji narzędzi." : {
+      "comment" : "Error shown when trying to add a URL while yt-dlp/ffmpeg aren't installed",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "yt-dlp / ffmpeg weren't found — see the tools installation screen."
+          }
+        }
+      }
+    },
+    "yt-dlp zakończył pracę z kodem %d." : {
+      "comment" : "Fallback failure message when yt-dlp exits with a nonzero status and printed nothing to stderr",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "yt-dlp exited with code %d."
+          }
+        }
+      }
+    },
+    "Zaktualizuj (brew upgrade)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update (brew upgrade)"
+          }
+        }
+      }
+    },
+    "Zamknij" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
+    "Zmień…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change…"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	Deliberately NOT App Sandboxed (unlike Movi). Tubio's whole job is
+	to locate and run an external, user-installed `yt-dlp`/`ffmpeg` binary
+	(typically under Homebrew's /opt/homebrew/bin or /usr/local/bin) and
+	let it write into whatever folder the person picks — the App Sandbox's
+	container/entitlement model fights both of those by design. Apple's
+	App Store review is also very unlikely to approve a video-downloader
+	app at all (see README's "App Store" note), so this is built for
+	direct, notarized distribution rather than the Store from the start —
+	same tradeoff already discussed for Movi.
+	-->
+	<key>com.apple.security.network.client</key>
+	<true/>
+</dict>
+</plist>
