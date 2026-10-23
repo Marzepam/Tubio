@@ -1,85 +1,77 @@
 # Tubio
 
-Natywna aplikacja macOS (SwiftUI) do pobierania wideo z serwisów streamingowych, zbudowana jako lekki, wizualny wrapper na [yt-dlp](https://github.com/yt-dlp/yt-dlp) i [ffmpeg](https://ffmpeg.org/). Styl okna, ikon i kontrolek nawiązuje do [Movi](../Movi). Okno podąża za wyglądem systemu (jasne/ciemne — w tym tryb "Auto" w Ustawieniach systemowych, przełączający się o zachodzie/wschodzie słońca), zamiast być na sztywno jasne lub ciemne.
+A native macOS app (SwiftUI) for downloading video from streaming sites, built as a lightweight, visual wrapper around [yt-dlp](https://github.com/yt-dlp/yt-dlp) and [ffmpeg](https://ffmpeg.org/).
 
-## Skąd ten projekt się wziął
+## Where this project came from
 
-Punktem wyjścia była analiza otwartoźródłowego projektu **Open Video Downloader** (youtube-dl-gui, autor: Jelle Glebbeek, licencja **AGPL-3.0-or-later**, Tauri 2 + Rust + Vue 3) — solidnej, dobrze zaprojektowanej aplikacji o tej samej ogólnej funkcji.
+The starting point was an analysis of the open-source project **Open Video Downloader** (youtube-dl-gui, by Jelle Glebbeek, licensed **AGPL-3.0-or-later**, Tauri 2 + Rust + Vue 3) — a solid, well-designed app with the same general purpose.
 
-Pierwsza wersja Tubio była świadomie *luźno* inspirowana tamtym kodem (własny, prostszy dobór formatu, własny mechanizm wykrywania ścieżki pliku wynikowego) — głównie z myślą o licencji AGPL-3.0, która przy dystrybucji/sprzedaży wymagałaby udostępnienia całego kodu pochodnego na tej samej licencji. Skoro Tubio jest **wyłącznie na Twój własny użytek** (nie jest sprzedawana ani rozpowszechniana), to ograniczenie przestaje mieć zastosowanie — AGPL dotyczy dystrybucji, nie prywatnego kompilowania i używania.
+The first version of Tubio was deliberately *loosely* inspired by that code (its own, simpler format selection, its own mechanism for detecting the resulting file's path) — mainly out of concern for the AGPL-3.0 license, which, upon distribution/sale, would require releasing all derivative code under the same license. Since Tubio is **strictly for your own personal use** (not sold or distributed), that restriction no longer applies — AGPL governs distribution, not private compiling and use.
 
-W tej wersji silnik pobierania (dobór formatu `-f`/`-S`, szablon postępu, sposób ustalania finalnej ścieżki pliku) jest więc **wiernym portem** rzeczywistej logiki z `src-tauri/src/runners/ytdlp_args/format_args.rs`, `output_args.rs` i `ytdlp_runner.rs` tamtego projektu — przepisanym na Swift, nie kopiowanym linia-po-linii z Rusta (inna składnia, inny model współbieżności), ale obliczającym te same selektory i flagi `yt-dlp`, zamiast własnej, uproszczonej wersji, która w praktyce działała inaczej. Gdybyś kiedyś chciał udostępnić lub sprzedać tę aplikację, warto wrócić do kwestii licencji — na razie, przy czysto prywatnym użytku, nie jest to problem.
+In this version, the download engine (format selection `-f`/`-S`, progress template, how the final file path is determined) is therefore a **faithful port** of the actual logic from that project's `src-tauri/src/runners/ytdlp_args/format_args.rs`, `output_args.rs`, and `ytdlp_runner.rs` — rewritten in Swift, not copied line-by-line from Rust (different syntax, different concurrency model), but computing the same `yt-dlp` selectors and flags, instead of a simplified version of its own that in practice behaved differently. If you ever want to share or sell this app, it's worth revisiting the licensing question — for now, with purely private use, it isn't an issue.
 
-Ikona i branding pozostają własnym projektem (patrz niżej) — to osobna decyzja, niezwiązana z licencją kodu.
+The icon and branding remain an original design (see below) — a separate decision, unrelated to the code's license.
 
-## Ikona i branding
+## What the app does
 
-Aktualna ikona to grafika, którą dostarczyłeś bezpośrednio (czerwony zaokrąglony kwadrat, biały panel wewnątrz, czarna strzałka pobierania) — nie generuję jej już sama. Jedyna obróbka, jaką jej zrobiłem: usunąłem checkerboard (szachownicę oznaczającą przezroczystość w podglądzie) i wyeksportowałem ją w rozmiarach wymaganych przez macOS (16–1024 px, 1x/2x).
+- Paste a video URL → Tubio asks `yt-dlp -J` for metadata (title, thumbnail, duration, available resolutions) — bigger thumbnails in the queue than the first version, so a video is easier to recognize at a glance.
+- Pick a quality (best / a specific resolution / audio-only as MP3) — the format selector (`-f`/`-S`) is a faithful port of what the original project actually builds for the same choice, not a simplified version of its own.
+- Tubio queries `yt-dlp` with `--progress-template` for exactly the same set of fields as the original project, to get download progress in a format that's easy to parse (rather than a human-readable terminal progress bar), and shows it as a bar + speed + ETA.
+- Tubio determines the final file path the same way the original project does: by watching the ordinary, plain-text lines `yt-dlp` prints anyway during its work (`[download] Destination: …`, `[Merger] Merging formats into "…"`, `[VideoRemuxer] Destination: …`, …) and remembering the one with the highest "confidence" — not through a separate `--print` flag, which in the first version was the only, not fully battle-tested, approach.
+- The queue handles several downloads at once (limit set in Settings), **pause/resume** (a real `SIGSTOP`/`SIGCONT`, not just a visual one — see below), cancelling, retrying failed downloads, "Show in Finder" / "Open".
+- The window is light or dark depending on the system appearance (System Settings → Appearance), without forcing one theme — the icons work the same way: every neutral (non-red) icon in the interface tracks the same system label color as the Settings gear icon (dark in Light mode, light in Dark mode).
+- In Settings: checking for and installing `yt-dlp`/`ffmpeg` updates via Homebrew (see "Checking for updates" below).
+- On first launch on a given machine, if `yt-dlp`/`ffmpeg` aren't installed yet, Tubio immediately shows a brief heads-up about it (see "First launch" below) — before you even try adding a link.
+- The interface speaks Polish or English automatically, depending on the system language (see "App language" below) — no switch in Settings.
 
-Plik źródłowy (1024×1024, już z usuniętym tłem) jest w `icon-source/tubio-icon-1024.png` — to z niego wygenerowane są wszystkie rozmiary w `Sources/Assets.xcassets/AppIcon.appiconset/` (ikona Docka/Findera) i `BrandMark.imageset/` (mały znak w nagłówku okna, obok nazwy aplikacji — używa tej samej grafiki, przeskalowanej). Wcześniejszy, generowany programistycznie wariant ikony (`icon-source/gen_icon.py`) został usunięty, bo nie jest już używany.
+## What the app deliberately does **not** do
 
-Ta ikona (czerwony kwadrat + strzałka w dół) nie odwzorowuje znaku towarowego YouTube (czerwony prostokąt + biały trójkąt odtwarzania skierowany w bok) — to inny, bardziej generyczny motyw "pobierania", wspólny dla wielu aplikacji tego typu — ale warto wiedzieć, że to Twoja własna grafika, nie coś, co zweryfikowałem pod kątem praw do niej; jeśli pochodzi skądś indziej, to już Twoja ocena, czy możesz jej używać.
+- **It doesn't download or run `yt-dlp`/`ffmpeg` for you.** Open Video Downloader has a whole system for this: a signed Ed25519 manifest, SHA-256 verification, downloading binaries from the internet. It's a serious, well-built mechanism — but also a larger attack surface (you have to trust the server serving the manifest) and more code to maintain. Tubio instead **looks for** `yt-dlp`/`ffmpeg` installed via Homebrew (`/opt/homebrew/bin`, `/usr/local/bin`, `/opt/local/bin`, `~/.local/bin`) or on `PATH`. If it can't find them, it shows a screen with a ready-to-copy `brew install yt-dlp ffmpeg`.
+- **It doesn't manage any login credentials** for sites (OVD has a whole Stronghold + OS keyring module for this, since it handles cookie files/logins). Tubio deliberately leaves this alone — there's no secrets store at all, because it doesn't keep anything like that.
+- **It has no Sandbox** (`App Sandbox`), unlike Movi. The Sandbox is fundamentally incompatible with locating/running arbitrary user-installed binaries from anywhere and writing to an arbitrarily chosen destination folder. The app is built for distribution outside the Mac App Store (signed + notarized), not for the Store itself.
+- **It doesn't support playlists yet** — the `PlaylistInfo` model is defined but not wired up to the UI. One URL at a time, for now.
+- **Pause doesn't cover ffmpeg.** "Pause" itself is real — it sends `SIGSTOP` to the `yt-dlp` process (see "Pause/resume" below) — but if the data has already moved on to a separately spawned `ffmpeg` (merging/transcoding after downloading), that process isn't frozen, since it runs as its own, independent child. In practice, pausing matters mainly during the download phase itself, which is most of a download's duration.
 
-## Czego aplikacja robi
+## Pause/resume
 
-- Wklejasz URL filmu → Tubio pyta `yt-dlp -J` o metadane (tytuł, miniaturę, czas trwania, dostępne rozdzielczości) — większe miniatury w kolejce niż w pierwszej wersji, żeby łatwiej rozpoznać film na pierwszy rzut oka.
-- Wybierasz jakość (najlepsza / konkretna rozdzielczość / tylko audio jako MP3) — selektor formatu (`-f`/`-S`) jest wiernym portem tego, co faktycznie buduje oryginalny projekt dla tego samego wyboru, a nie własną, uproszczoną wersją.
-- Tubio odpytuje `yt-dlp` z `--progress-template` o dokładnie taki sam zestaw pól co oryginalny projekt, żeby dostać postęp pobierania w formacie, który łatwo sparsować (a nie ludzki pasek postępu z terminala), i pokazuje go jako pasek + prędkość + ETA.
-- Finalną ścieżkę pliku Tubio ustala tak samo jak oryginalny projekt: obserwując zwykłe, tekstowe linie, które `yt-dlp` i tak drukuje w trakcie pracy (`[download] Destination: …`, `[Merger] Merging formats into "…"`, `[VideoRemuxer] Destination: …`, …) i zapamiętując tę o najwyższej "pewności" — a nie przez osobną flagę `--print`, która w pierwszej wersji była jedynym, nie do końca sprawdzonym w boju sposobem.
-- Kolejka obsługuje kilka pobrań równocześnie (limit ustawiany w Ustawieniach), **wstrzymanie/wznowienie** (prawdziwe `SIGSTOP`/`SIGCONT`, nie tylko wizualne — patrz niżej), anulowanie, ponawianie nieudanych, "Pokaż w Finderze" / "Otwórz".
-- Okno jest jasne lub ciemne zależnie od wyglądu systemu (Ustawienia systemowe → Wygląd), bez wymuszania jednego motywu — tak samo ikony: wszystkie neutralne (nie czerwone) ikony w interfejsie śledzą ten sam systemowy kolor etykiety co ikona Ustawień (ciemne w jasnym motywie, jasne w ciemnym).
-- W Ustawieniach: sprawdzanie i instalowanie aktualizacji `yt-dlp`/`ffmpeg` przez Homebrew (patrz "Sprawdzanie aktualizacji" niżej).
-- Przy pierwszym uruchomieniu na danym komputerze, jeśli `yt-dlp`/`ffmpeg` akurat nie są jeszcze zainstalowane, Tubio od razu pokazuje krótki monit o tym (patrz "Pierwsze uruchomienie" niżej) — zanim jeszcze spróbujesz dodać link.
-- Interfejs mówi po polsku lub po angielsku automatycznie, zależnie od języka systemu (patrz "Język aplikacji" niżej) — bez przełącznika w Ustawieniach.
+"Pause" on an in-progress download sends a real Unix `SIGSTOP` signal to the `yt-dlp` process — the same mechanism as `Ctrl+Z` in a terminal: the process genuinely freezes (zero CPU usage, zero transfer), not just a "fake" pause in the interface. "Resume" sends `SIGCONT` and the process continues from the same point, without losing any data already downloaded. "Cancel" on a paused download first sends `SIGCONT` (a `SIGTERM` sent to a frozen process would sit in its queue, unhandled, until it's resumed), then terminates the process normally.
 
-## Czego aplikacja **nie** robi (świadomie)
+The analyzed original project has **no** pause/resume feature at all (verified in its source — there's no trace of `pause`/`SIGSTOP`/`suspend` in the Rust code) — this is Tubio's own feature, added at your request, not a port of anything that already existed.
 
-- **Nie pobiera i nie uruchamia `yt-dlp`/`ffmpeg` za Ciebie.** Open Video Downloader ma cały system do tego: podpisany Ed25519 manifest, weryfikację SHA-256, pobieranie binarek z internetu. To poważny, dobrze zrobiony mechanizm — ale też większa powierzchnia ataku (trzeba ufać serwerowi z manifestem) i więcej kodu do utrzymania. Tubio zamiast tego **szuka** `yt-dlp`/`ffmpeg` zainstalowanych przez Homebrew (`/opt/homebrew/bin`, `/usr/local/bin`, `/opt/local/bin`, `~/.local/bin`) albo w `PATH`. Jeśli ich nie znajdzie, pokazuje ekran z gotowym do skopiowania `brew install yt-dlp ffmpeg`.
-- **Nie zarządza żadnymi danymi logowania** do serwisów (OVD ma do tego cały moduł Stronghold + OS keyring, bo obsługuje pliki cookies/loginy). Tubio celowo tego nie dotyka — nie ma żadnego magazynu sekretów, bo nic takiego nie przechowuje.
-- **Nie ma Sandboxa** (`App Sandbox`), w przeciwieństwie do Movi. Sandbox jest fundamentalnie niekompatybilny z szukaniem/odpalaniem dowolnych binarek zainstalowanych przez użytkownika w dowolnym miejscu i zapisem do dowolnie wybranego folderu docelowego. Aplikacja jest budowana pod dystrybucję poza Mac App Store (podpisana + notaryzowana), nie pod sam Store.
-- **Nie obsługuje jeszcze playlist** — model `PlaylistInfo` jest zdefiniowany, ale nie podłączony do UI. Jedno-URL-na-raz, na razie.
-- **Pauza pobrania przez ffmpeg nie jest objęta.** Samo "Wstrzymaj" działa naprawdę — wysyła `SIGSTOP` do procesu `yt-dlp` (patrz "Pauza/wznów" niżej) — ale jeśli dane już trafiły do osobno odpalonego `ffmpeg` (łączenie/przekodowanie po ściągnięciu), ten proces nie jest zamrażany, bo działa jako własne, niezależne dziecko. W praktyce pauza ma sens głównie w fazie samego ściągania, czyli przez większość czasu trwania pobrania.
+Limitation: this only freezes the `yt-dlp` process itself. If a download has already moved into the merging/transcoding phase through a separately spawned `ffmpeg`, that child process keeps running — see the note in "What the app deliberately does not do" above.
 
-## Pauza/wznów
+## Checking for updates (yt-dlp / ffmpeg)
 
-"Wstrzymaj" na trwającym pobraniu wysyła realny sygnał Unix `SIGSTOP` do procesu `yt-dlp` — to ten sam mechanizm, co `Ctrl+Z` w terminalu: proces dosłownie zamiera (zero zużycia CPU, zero transferu), a nie tylko "udaje" wstrzymanie w interfejsie. "Wznów" wysyła `SIGCONT` i proces kontynuuje od tego samego miejsca, bez utraty już ściągniętych danych. "Anuluj" na wstrzymanym pobraniu najpierw wysyła `SIGCONT` (sygnał `SIGTERM` wysłany do zamrożonego procesu czekałby w kolejce, nieobsłużony, aż do wznowienia), a potem normalnie kończy proces.
+Settings has a "yt-dlp / ffmpeg" section with a "Check for updates" button (runs `brew outdated --quiet yt-dlp ffmpeg` and shows both tools' current versions) and, when there's something to update, an "Update" button (`brew upgrade yt-dlp ffmpeg`).
 
-Analizowany oryginalny projekt **nie ma** w ogóle funkcji pauzy/wznowienia (sprawdzone w jego źródłach — nie ma śladu `pause`/`SIGSTOP`/`suspend` w kodzie Rust) — to własna funkcja Tubio, dodana na Twoją prośbę, a nie port niczego istniejącego.
+This is an **adaptation**, not a port, of the update mechanism in the analyzed original project — and the distinction is worth understanding. The original (`binaries_manager.rs` + the `commands/updater/` module) has two completely separate systems: (1) its own yt-dlp/ffmpeg binary-update system — a signed Ed25519 manifest, SHA-256 verification, downloading from its own servers that host those binaries, and (2) an unrelated self-updating mechanism for the Tauri app itself (`tauri_plugin_updater`). Point (1) has nothing to port to: Tubio doesn't manage its own copies of yt-dlp/ffmpeg (see `BinaryLocator`) and has no binary-hosting server of its own for such a port to point at. Rather than fake a port of a system Tubio doesn't have, `HomebrewUpdater` does what you'd do by hand in Terminal anyway — it asks Homebrew, which already manages these binaries on your system.
 
-Ograniczenie: to zamraża tylko sam proces `yt-dlp`. Jeśli pobieranie zdążyło już przejść do fazy łączenia/przekodowania przez osobno odpalony `ffmpeg`, ten proces-dziecko działa dalej — patrz uwaga w sekcji "Czego aplikacja nie robi" wyżej.
+## First launch
 
-## Sprawdzanie aktualizacji (yt-dlp / ffmpeg)
+On the very first launch of Tubio on a given machine (remembered in `UserDefaults`, so it shows exactly once, never again) — if `yt-dlp`/`ffmpeg` aren't installed at that moment — a brief "Welcome to Tubio" alert pops up letting you know these two tools are needed for downloading video, before you even try adding a link. This is deliberately an *addition* to the existing "yt-dlp and/or ffmpeg missing" screen (`MissingToolsView`), not a replacement for it — that screen, with its ready-to-copy `brew install yt-dlp ffmpeg`, still shows up every time the tools are unavailable, for as long as they're actually missing. If `yt-dlp`/`ffmpeg` are already installed at first launch, the alert doesn't appear — there's nothing to flag.
 
-W Ustawieniach jest sekcja "yt-dlp / ffmpeg" z przyciskiem "Sprawdź aktualizacje" (uruchamia `brew outdated --quiet yt-dlp ffmpeg` i pokazuje aktualne wersje obu narzędzi) oraz, gdy jest co aktualizować, przyciskiem "Zaktualizuj" (`brew upgrade yt-dlp ffmpeg`).
+## App language
 
-To jest **adaptacja**, nie port mechanizmu aktualizacji z analizowanego oryginalnego projektu — i warto rozumieć różnicę. Oryginał (`binaries_manager.rs` + moduł `commands/updater/`) ma dwa zupełnie osobne systemy: (1) własny system aktualizacji binarek yt-dlp/ffmpeg — podpisany Ed25519 manifest, weryfikacja SHA-256, pobieranie z własnych serwerów hostujących te binarki, i (2) niezwiązany z tym samoaktualizujący się mechanizm samej aplikacji Tauri (`tauri_plugin_updater`). Punkt (1) nie ma czego portować: Tubio nie zarządza własnymi kopiami yt-dlp/ffmpeg (patrz `BinaryLocator`) i nie ma żadnego serwera hostującego binarki, do którego taki port mógłby się odnosić. Zamiast udawać port nieistniejącego u Tubio systemu, `HomebrewUpdater` robi to, co i tak zrobiłbyś ręcznie w Terminalu — pyta Homebrew, który już zarządza tymi binarkami na Twoim systemie.
+The interface is now fully localized: Polish and English, chosen automatically based on the system language (System Settings → General → Language & Region) — no switch inside the app itself, since macOS already does this for any properly localized app. If the system is set to a language other than these two, Tubio shows Polish (the source language of the text in the code).
 
-## Pierwsze uruchomienie
+Technically: every string in the interface is a key in `Sources/Resources/Localizable.xcstrings` (a String Catalog, native to Xcode 15+) — the keys are the Polish text from the code itself, and the file adds English translations for them. Adding another language means adding a third list of translations to this one file, with no Swift changes. A handful of things were deliberately left untranslated, because they're identical in both languages or aren't words at all: the app name, tool names (`yt-dlp`, `ffmpeg`, `brew`), resolution labels (`1080p` etc.), and the filename template syntax (`%(title)s.%(ext)s`).
 
-Przy samym pierwszym uruchomieniu Tubio na danym komputerze (zapamiętane w `UserDefaults`, więc pokazuje się dokładnie raz, nigdy więcej) — jeśli `yt-dlp`/`ffmpeg` akurat nie są zainstalowane w tym momencie — wyskakuje krótki alert "Witaj w Tubio" z informacją, że do pobierania wideo potrzebne są te dwa narzędzia, zanim jeszcze dojdzie do próby dodania linka. To celowo *dodatek* do istniejącego ekranu "Brakuje yt-dlp i/lub ffmpeg" (`MissingToolsView`), nie jego zamiennik — ten ekran z gotowym do skopiowania `brew install yt-dlp ffmpeg` nadal pokazuje się za każdym razem, gdy narzędzia są niedostępne, tak długo jak długo faktycznie ich brakuje. Jeśli przy pierwszym uruchomieniu `yt-dlp`/`ffmpeg` już są zainstalowane, alert się nie pojawia — nie ma czego sygnalizować.
-
-## Język aplikacji
-
-Interfejs jest teraz w pełni zlokalizowany: polski i angielski, wybierane automatycznie na podstawie języka systemu (Ustawienia systemowe → Ogólne → Język i region) — bez przełącznika w samej aplikacji, bo macOS robi to sam dla każdej poprawnie zlokalizowanej aplikacji. Jeśli system jest w innym języku niż te dwa, Tubio pokazuje polski (to język źródłowy tekstów w kodzie).
-
-Technicznie: wszystkie napisy w interfejsie są kluczami w `Sources/Resources/Localizable.xcstrings` (String Catalog, natywny dla Xcode 15+) — kluczami są same polskie teksty z kodu, a plik dodaje do nich angielskie tłumaczenia. Dodanie kolejnego języka to dopisanie w tym pliku trzeciej listy tłumaczeń, bez zmian w Swifcie. Kilka rzeczy zostało świadomie bez tłumaczenia, bo są identyczne w obu językach albo to nie są słowa: nazwa aplikacji, nazwy narzędzi (`yt-dlp`, `ffmpeg`, `brew`), etykiety rozdzielczości (`1080p` itd.) i składnia szablonu nazwy pliku (`%(title)s.%(ext)s`).
-
-## Wymagania
+## Requirements
 
 - macOS 14+
 - [Homebrew](https://brew.sh)
-- `yt-dlp` i `ffmpeg`: `brew install yt-dlp ffmpeg`
-- Xcode + [XcodeGen](https://github.com/yonaskolb/XcodeGen) do zbudowania projektu z `project.yml` (`brew install xcodegen`)
+- `yt-dlp` and `ffmpeg`: `brew install yt-dlp ffmpeg`
+- Xcode + [XcodeGen](https://github.com/yonaskolb/XcodeGen) to build the project from `project.yml` (`brew install xcodegen`)
 
-### Odinstalowanie yt-dlp / ffmpeg
+### Uninstalling yt-dlp / ffmpeg
 
 ```bash
 brew uninstall yt-dlp ffmpeg
 ```
 
-Przydatne np. przy czystej reinstalacji, jeśli podejrzewasz uszkodzoną/przestarzałą instalację. Po odinstalowaniu Tubio pokaże ekran "Brakuje yt-dlp i/lub ffmpeg" z gotową komendą instalacyjną.
+Useful e.g. for a clean reinstall, if you suspect a broken/outdated install. After uninstalling, Tubio will show the "yt-dlp and/or ffmpeg missing" screen with a ready-to-copy install command.
 
-## Budowanie
+## Building
 
 ```bash
 cd Tubio
@@ -87,19 +79,19 @@ xcodegen generate
 open Tubio.xcodeproj
 ```
 
-## Architektura (krótko)
+## Architecture (brief)
 
-- `Services/BinaryLocator.swift` — szukanie `yt-dlp`/`ffmpeg`/`brew` na dysku.
-- `Services/HomebrewUpdater.swift` — sprawdzanie i instalowanie aktualizacji `yt-dlp`/`ffmpeg` przez `brew outdated`/`brew upgrade` (patrz "Sprawdzanie aktualizacji" wyżej).
-- `Services/YtdlpArgs.swift` — budowanie tablic argumentów (nigdy stringa do shella) dla każdego wywołania `yt-dlp`; selektor formatu, pola sortowania i flagi postprocessingu to port rzeczywistej logiki oryginalnego projektu (patrz wyżej).
-- `Services/YtdlpRunner.swift` — bezpieczne odpalanie `Process`, strumień zdarzeń (`AsyncStream<YtdlpEvent>`) z postępem/stderr/finalną ścieżką pliku/kodem wyjścia; czyta zarówno stdout, jak i stderr tak jak oryginalny silnik.
-- `Services/ProgressParser.swift` — parsowanie linii `RAW|...` z `--progress-template` (identyczny zestaw pól co oryginał, z tym samym łańcuchem fallbacków przy liczeniu procentu).
-- `Services/DestinationParser.swift` — ustalanie finalnej ścieżki pliku z linii `yt-dlp` typu "Destination:"/"Merging formats into", z systemem "pewności" identycznym jak w oryginale.
-- `Models/` — `MediaInfo`/`YtdlpFormat` (dekodowanie JSON z `yt-dlp -J`), `DownloadItem`/`DownloadProgress`/`DownloadState`.
-- `ViewModels/DownloadQueueViewModel.swift` — kolejka, limit równoczesnych pobrań, ustawienia w `UserDefaults`.
-- `Views/` — `ContentView` (główne okno, jasne/ciemne zależnie od systemu, pierwsze-uruchomienie alert), `DownloadCardView` (wiersz kolejki z większą miniaturą), `SettingsView`, `MissingToolsView`.
-- `Resources/Localizable.xcstrings` — String Catalog z tłumaczeniami wszystkich napisów interfejsu (polski → angielski); patrz "Język aplikacji" wyżej.
+- `Services/BinaryLocator.swift` — locating `yt-dlp`/`ffmpeg`/`brew` on disk.
+- `Services/HomebrewUpdater.swift` — checking for and installing `yt-dlp`/`ffmpeg` updates via `brew outdated`/`brew upgrade` (see "Checking for updates" above).
+- `Services/YtdlpArgs.swift` — building argument arrays (never a shell string) for each `yt-dlp` invocation; the format selector, sort fields, and postprocessing flags are a port of the original project's actual logic (see above).
+- `Services/YtdlpRunner.swift` — safely running `Process`, an event stream (`AsyncStream<YtdlpEvent>`) with progress/stderr/final file path/exit code; reads both stdout and stderr the same way the original engine does.
+- `Services/ProgressParser.swift` — parsing `RAW|...` lines from `--progress-template` (the same set of fields as the original, with the same fallback chain for computing the percentage).
+- `Services/DestinationParser.swift` — determining the final file path from `yt-dlp` lines like "Destination:"/"Merging formats into", with a "confidence" system identical to the original's.
+- `Models/` — `MediaInfo`/`YtdlpFormat` (decoding JSON from `yt-dlp -J`), `DownloadItem`/`DownloadProgress`/`DownloadState`.
+- `ViewModels/DownloadQueueViewModel.swift` — the queue, concurrent-download limit, settings in `UserDefaults`.
+- `Views/` — `ContentView` (main window, light/dark depending on the system, first-launch alert), `DownloadCardView` (a queue row with a bigger thumbnail), `SettingsView`, `MissingToolsView`.
+- `Resources/Localizable.xcstrings` — a String Catalog with translations for every interface string (Polish → English); see "App language" above.
 
-## Odpowiedzialne korzystanie
+## Responsible use
 
-Tubio to narzędzie ogólnego przeznaczenia do pobierania wideo — tak jak `yt-dlp` samo w sobie, czy dziesiątki podobnych GUI. Nie omija żadnych zabezpieczeń DRM, nie udostępnia treści chronionych prawem autorskim nikomu innemu, nie łamie żadnych zamków technicznych. To, co pobierzesz i co z tym zrobisz, podlega regulaminowi serwisu, z którego pobierasz, oraz obowiązującemu prawu autorskiemu w Twojej jurysdykcji — to Twoja odpowiedzialność jako użytkownika, tak jak przy każdym innym narzędziu tego typu.
+Tubio is a general-purpose video-downloading tool — just like `yt-dlp` itself, or dozens of similar GUIs. It doesn't bypass any DRM protections, doesn't make copyrighted content available to anyone else, doesn't break any technical locks. What you download and what you do with it is governed by the terms of service of the site you're downloading from, and by the copyright law applicable in your jurisdiction — that's your responsibility as the user, same as with any other tool of this kind.
