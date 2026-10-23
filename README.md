@@ -1,3 +1,4 @@
+<img width="632" height="468" alt="Screenshot 2026-10-23 at 10 38 34" src="https://github.com/user-attachments/assets/e5127198-b9cf-4a15-bae8-9001f47d9aea" />
 # Tubio
 
 A native macOS app (SwiftUI) for downloading video from streaming sites, built as a lightweight, visual wrapper around [yt-dlp](https://github.com/yt-dlp/yt-dlp) and [ffmpeg](https://ffmpeg.org/).
